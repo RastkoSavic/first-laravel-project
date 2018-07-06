@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// Base Controller
 class PagesController extends Controller
 {
     public function index()

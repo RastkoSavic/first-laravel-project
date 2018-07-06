@@ -1,5 +1,7 @@
+<!-- Extends App Layout -->
 @extends('layouts.app')
 
+<!-- Section with content -->
 @section('content')
     <div class="jumbotron text-center">
         <h1>{{$title}}</h1>

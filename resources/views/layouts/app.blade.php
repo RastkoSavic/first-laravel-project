@@ -1,3 +1,4 @@
+<!-- Layout for Pages -->
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>

@@ -11,6 +11,8 @@
 |
  */
 
+// Some Examples
+
 // Route::get('/hello', function () {
 //     return '<h1>Hello World</h1';
 // });
@@ -19,8 +21,11 @@
 //     return 'This is user ' .$name . ' with an id: ' . $id;
 // });
 
+// Base Routes
+
 Route::get('/', 'PagesController@index');
-
 Route::get('/about', 'PagesController@about');
-
 Route::get('/services', 'PagesController@services');
+
+// Posts Rooutes
+Route::resource('posts', 'PostsController');
