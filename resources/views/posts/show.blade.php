@@ -8,9 +8,10 @@
    <br>
    <br>
    <h1>{{$post->title}}</h1>
-   <br>
+   <hr>
    <div>
-      {{$post->body}}
+      {{-- Parse HTML --}}
+      {!!$post->body!!}
    </div>
    <hr>
    <small>Written at {{$post->created_at}}</small>
