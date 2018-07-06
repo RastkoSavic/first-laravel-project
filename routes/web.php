@@ -22,10 +22,16 @@
 // });
 
 // Base Routes
-
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 
-// Posts Rooutes
+// Auth Routes
+Auth::routes();
+
+// Dashboard Route
+Route::get('/dashboard', 'DashboardController@index');
+
+// Posts Routes
 Route::resource('posts', 'PostsController');
+
