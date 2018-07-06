@@ -14,7 +14,7 @@
       {!!$post->body!!}
    </div>
    <hr>
-   <small>Written at {{$post->created_at}}</small>
+   <small>Written at {{$post->created_at}} by {{$post->user->name}}</small>
    <hr>
    {{-- Add clearfix for Edit and Delete buttons --}}
    <div class="clearfix">
