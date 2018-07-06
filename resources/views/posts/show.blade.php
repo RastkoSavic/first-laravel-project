@@ -9,6 +9,13 @@
    <br>
    <h1>{{$post->title}}</h1>
    <hr>
+   <br>
+      {{-- TODO:
+            Fix Image Size
+      --}}
+   <img style="width: 100%;" src="/storage/cover_images/{{$post->cover_image}}" alt="">
+   <br>
+   <br>
    <div>
       {{-- Parse HTML --}}
       {!!$post->body!!}
