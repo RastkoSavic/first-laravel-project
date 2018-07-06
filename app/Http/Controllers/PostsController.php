@@ -14,7 +14,7 @@ use DB;
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of Posts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Post.
      *
      * @return \Illuminate\Http\Response
      */
@@ -41,7 +41,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Post in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -64,7 +64,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Post.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -76,18 +76,19 @@ class PostsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Post.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Post in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -95,17 +96,33 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate Input
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        // Update Post
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Post Updated');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Post from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        // Delete Post
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('/posts')->with('success', 'Post Removed');
     }
 }
