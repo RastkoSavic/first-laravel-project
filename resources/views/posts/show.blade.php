@@ -16,13 +16,22 @@
    <hr>
    <small>Written at {{$post->created_at}} by {{$post->user->name}}</small>
    <hr>
-   {{-- Add clearfix for Edit and Delete buttons --}}
-   <div class="clearfix">
-         <a href="/posts/{{$post->id}}/edit" class="float-left btn btn-info">Edit</a>
-         {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
-            {{Form::hidden('_method', 'DELETE')}}
-            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-         {!! Form::close() !!}
-   </div>
+
+   {{-- Access Control For Guests --}}
+   @if(!Auth::guest())
+      
+      {{-- Access Control For Users --}}
+      @if(Auth::user()->id == $post->user_id)
+
+            {{-- Add clearfix for Edit and Delete buttons --}}
+            <div class="clearfix">
+                  <a href="/posts/{{$post->id}}/edit" class="float-left btn btn-info">Edit</a>
+                  {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                  {!! Form::close() !!}
+            </div>
+      @endif
+   @endif
     
 @endsection

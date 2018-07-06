@@ -20,6 +20,6 @@
 @if(session('error'))
    <br>   
    <div class="alert alert-danger">
-      {{sesssion('error')}}
+      {{session('error')}}
    </div>
 @endif
